@@ -1,6 +1,6 @@
 {
   "name": "gw-file",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.mjs",
   "module": "./dist/index.js",
@@ -38,7 +38,7 @@
   "homepage": "https://github.com/dndnsoft/gw-file#readme",
   "description": "",
   "devDependencies": {
-    "@types/node": "^25.3.2",
+    "@types/node": "^25.5.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tsup": "^8.5.1",
@@ -47,8 +47,8 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.999.0",
     "@aws-sdk/s3-request-presigner": "^3.999.0",
-    "gw-response": "^0.1.7",
-    "gw-result": "^0.1.7",
+    "gw-response": "^0.1.8",
+    "gw-result": "^0.1.8",
     "uuid": "^13.0.0"
   },
   "peerDependencies": {

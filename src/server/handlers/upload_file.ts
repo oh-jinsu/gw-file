@@ -15,14 +15,14 @@ export const uploadFileHandler = <TFile>({
 
     if (typeof name !== "string") {
       return httpBadRequest(
-        { code: "FILE_NAME_REQUIRED", message: "파일 이름이 필요해요." },
+        { code: "FILE_NAME_REQUIRED", message: "파일 이름이 필요합니다." },
         { headers },
       );
     }
 
     if (typeof type !== "string") {
       return httpBadRequest(
-        { code: "FILE_TYPE_REQUIRED", message: "파일 타입이 필요해요." },
+        { code: "FILE_TYPE_REQUIRED", message: "파일 타입이 필요합니다." },
         { headers },
       );
     }
@@ -39,6 +39,6 @@ export const uploadFileHandler = <TFile>({
       return httpExceptionFromErr(500, result);
     }
 
-    return httpCreated(result, { headers });
+    return httpCreated(result.value, { headers });
   };
 };
