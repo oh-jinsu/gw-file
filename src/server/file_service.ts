@@ -39,11 +39,9 @@ export class FileService<TFile> {
 
     const { key, file } = fileResult.value;
 
-    const signedUrlResult = await resultFrom(() =>
-      this.objectStorage.generateSignedUrl(key, {
-        contentType: params.type,
-      }),
-    );
+    const signedUrlResult = await this.objectStorage.generateSignedUrl(key, {
+      contentType: params.type,
+    });
 
     if (signedUrlResult.isErr) {
       return signedUrlResult;
