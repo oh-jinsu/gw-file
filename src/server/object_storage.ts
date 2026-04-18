@@ -85,7 +85,9 @@ export class ObjectStorage {
       return exception("BODY_NOT_FOUND", "데이터를 찾을 수 없습니다.");
     }
 
-    return ok(Body.transformToByteArray());
+    const buffer = await Body.transformToByteArray();
+
+    return ok(buffer);
   }
 
   async put(
