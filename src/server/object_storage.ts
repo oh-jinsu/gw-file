@@ -1,4 +1,5 @@
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
@@ -109,5 +110,22 @@ export class ObjectStorage {
     }
 
     return ok(putObjectResult.value);
+  }
+
+  async delete(key: string) {
+    const command = new DeleteObjectCommand({
+      Bucket: this.bucketName,
+      Key: key,
+    });
+
+    const deleteObjectResult = await resultFrom(() =>
+      this.client.send(command),
+    );
+
+    if (deleteObjectResult.isErr) {
+      return deleteObjectResult;
+    }
+
+    return ok(deleteObjectResult.value);
   }
 }
