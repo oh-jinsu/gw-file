@@ -13,16 +13,18 @@ export type ResponsiveImageProps = Omit<
   ratio?: number;
 };
 
-const SIZES = [
+const DEFAULT_SIZES = [
   64, 128, 256, 320, 480, 640, 768, 1024, 1280, 1536, 1920, 2560, 3840,
-] as const;
+];
 
 export const createResponsiveImage = ({
   cdnOrigin,
   defaultProps,
+  sizes = DEFAULT_SIZES,
 }: {
   cdnOrigin: string | (() => string);
   defaultProps?: Partial<ResponsiveImageProps>;
+  sizes?: number[];
 }): FC<ResponsiveImageProps> => {
   const Component: FC<ResponsiveImageProps> = ({
     alt,
@@ -41,7 +43,7 @@ export const createResponsiveImage = ({
         {...props}
         src={src}
         alt={alt}
-        srcSet={generateSrcSet(cdnOriginValue, src, ratio, props)}
+        srcSet={generateSrcSet(cdnOriginValue, src, ratio, props, sizes)}
       />
     );
   };
@@ -110,7 +112,7 @@ export function generateSrcSet(
     width?: string | number;
     height?: string | number;
   } = {},
-  sizes = SIZES,
+  sizes = DEFAULT_SIZES,
 ) {
   const src = typeof image === "string" ? image : image.src;
 
